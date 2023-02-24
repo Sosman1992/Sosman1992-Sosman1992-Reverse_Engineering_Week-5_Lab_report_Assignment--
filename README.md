@@ -7,11 +7,11 @@ To solve this crackme, I unzipped the archive I downloaded from the link `crackm
 
 ##My solution is shown below:
 <pre><code>
-\#!/usr/bin/env python3</pre>
+#!/usr/bin/env python3
 import string
 import random
 
-\# Function definition to generate a random character based on a supplied condition</pre>
+# Function definition to generate a random character based on a supplied condition</pre>
  def conditional_random(cond, chars):
      res = []
      for c in chars:
