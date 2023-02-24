@@ -1,32 +1,86 @@
-Binary Reverse Engineering Challenges
+#Binary Reverse Engineering Challenges
 
-Chapter 5 in the textbook this week focuses on IDA Pro, but we are learning Ghidra. Here are 5 crackme options to solve this week. If you are a grad student, you need to do any 3. Undergrads can complete any 2. Remember, in addition to being fun puzzles these may contain malware. Be sure to use the principles of isolation and snapshots to protect your data and to avoid becoming a danger to the rest of the world. Sometimes, even extracting a compressed file could trigger malicious activity.
+---
 
-Options:
+##Crackme 1 Solution (crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz):
 
-The password to extract each of these is "crackmes.de"
+To solve this crackme, I unzipped the archive I downloaded from the link `crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz` and the unzipped file contained 3 files, with two of them as binary files (a 32-bit and a 64-bit) and the third a readme file, containing a simple description of the challenge:.
 
-Crackme 1
+###My solution is shown below:
+<code>
+#!/usr/bin/env python3
+import string
+import random
 
-Links to an external site. (Make a program that can output valid serial numbers for crackme05, you get both a 32-bit and 64-bit version)
+# Function definition to generate a random character based on a supplied condition
+ def conditional_random(cond, chars):
+     res = []
+     for c in chars:
+         if cond(c):
+             res.append(c)
+     return random.choice(res)
 
-Crackme 2
+# Generate the set of possible characters as a byte array
+char_options = string.ascii_lowercase + string.ascii_uppercase + string.digits + '-'
+valid_chars = bytearray()
+valid_chars.extend(map(ord, char_options))
 
-Links to an external site. (Make a program that can create valid username/password pairs to unlock the success response from crackme1)
+# Generate a random serial that is 19 characters long
+serial = [random.choice(valid_chars) for i in range(19)]
 
-Crackme 3
+# We know that positions 4, 9, and 14 must be a '-' char...This is technically done in the cracker() stage, but we'll just do it here...
+serial[4] = 0x2d
+serial[9] = 0x2d
+serial[14] = 0x2d
 
-Links to an external site. (Make a program to create valid passwords for keygenMe)
+# Logic from the paper() stage
+serial[8] = conditional_random(lambda x: (x ^ serial[10]) <= 9, valid_chars)
+serial[5] = conditional_random(lambda x: (x ^ serial[13]) <= 9, valid_chars)
+iVar1 = (serial[10] ^ serial[8]) + 0x30
+iVar2 = (serial[13] ^ serial[5]) + 0x30
+serial[3] = iVar1
+serial[15] = iVar1
+serial[0] = iVar2
+serial[18] = iVar2
 
-Crackme 4
+# Logic from the scissors() stage
+serial[1] = conditional_random(lambda x: x + serial[2] > 170, valid_chars)
+serial[16] = conditional_random(lambda x: x + serial[17] > 170 and serial[1] + serial[2] != x + serial[17], valid_chars)
+print("".join([chr(c) for c in serial]))
+</code>
 
-Links to an external site. (Figure out what key will decrypt the message in the pop-up box using DecryptMe -- This one runs in Windows XP)
+print("This is the answer!")
 
-Crackme 5
+###How I did it using Ghidra (and any other tools you used like gdb):
 
-Links to an external site. (Make a program that can output valid serial numbers for crackme04, you get both a 32-bit and 64-bit version. You don't need to change any of the other crackmes to solve them, but you do need to patch this one to get it past the self-destruct instructions so it will actually ask for a serial number)
+    I opened the crackme in Ghidra
+    I found the `main` function and noticed three function calls.
+    The first one called `________` does ________. I can tell because ___________________.
+    etc.
+    Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what       you did in enough detail that someone else could reproduce what you did.
 
-Submit a link to this week's report in markdown format: This week, your reports will look something like this:
+ 
+
+##Crackme 1 Solution (link/to/download/location):
+
+To solve this crackme, you need to __________________________.
+
+My solution is ____________________________. (If the crackme asks for a program, include your source code in a code block)
+
+#!/usr/bin/env python3
+
+
+print("This is the answer!")
+
+How I did it using Ghidra (and any other tools you used like gdb):
+
+    I opened the crackme in Ghidra
+    I found the `main` function and noticed three function calls.
+    The first one called `________` does ________. I can tell because ___________________.
+    etc.
+    Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what you did in enough detail that someone else could reproduce what you did.
+
+
 
 Crackme 1 Solution (link/to/download/location):
 
@@ -46,5 +100,3 @@ How I did it using Ghidra (and any other tools you used like gdb):
     The first one called `________` does ________. I can tell because ___________________.
     etc.
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what you did in enough detail that someone else could reproduce what you did.
-
- 
