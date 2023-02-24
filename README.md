@@ -49,14 +49,16 @@ serial[16] = conditional_random(lambda x: x + serial[17] > 170 and serial[1] + s
 print("".join([chr(c) for c in serial]))
 </pre></code>
 
-print("This is the answer!")
+**print("This is the answer!")**
 
 **How I did it using Ghidra (and any other tools you used like gdb):**
 
-    I opened the crackme in Ghidra
-    I found the `main` function and noticed three function calls.
-    The first one called `________` does ________. I can tell because ___________________.
-    etc.
+    I opened the crackme in Ghidra by first of all running the command `./Ghidra` in my terminal and then imported the 32-bit executable version with.         Having loaded the binary into Ghidra, I then proceed to look for the `main` function since it is the main entry point of any C program, After double       clicking the main function in the system tree, it then opened up a decompilation window containing C code.  
+    I found the `main` function and noticed three function calls. The first one called `rock((int)argv[1])` does is call another function `bomb()` within       it if a character matches set of pattern. I can tell because most of the function body of `rock` is made up of a while loop that is iterating over the     entire serial. Also if statement is present that checks if the size of the serial is 0x13, which confirms the suspicion that our serial is going to be     19-characters long.
+    The second one called `paper` function does is creating conditions that the keygen will need to take into account to pass this verification stage. I       can tell because there are 4 code paths within the `paper` function body that will result in a call to bomb().
+    The third one called `scissors` function does is creating conditions that the keygen will need to take into account to pass this verification stage. I       can tell because there are 4 code paths within the `paper` function body that will result in a call to bomb().
+ 
+    
     
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what       you did in enough detail that someone else could reproduce what you did.
 
