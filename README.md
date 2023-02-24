@@ -2,11 +2,11 @@ Binary Reverse Engineering Challenges
 
 ---
 
-##Crackme 1 Solution (crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz):
+**Crackme 1 Solution (crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz):**
 
 To solve this crackme, I unzipped the archive I downloaded from the link `crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz` and the unzipped file contained 3 files, with two of them as binary files (a 32-bit and a 64-bit) and the third a readme file, containing a simple description of the challenge:.
 
-##My solution is shown below:
+**My solution is shown below:**
 <pre><code>
 #!/usr/bin/env python3
 import string
@@ -51,17 +51,18 @@ print("".join([chr(c) for c in serial]))
 
 print("This is the answer!")
 
-##How I did it using Ghidra (and any other tools you used like gdb):
+**How I did it using Ghidra (and any other tools you used like gdb):**
 
     I opened the crackme in Ghidra
     I found the `main` function and noticed three function calls.
     The first one called `________` does ________. I can tell because ___________________.
     etc.
+    
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what       you did in enough detail that someone else could reproduce what you did.
 
  
 
-##Crackme 1 Solution (link/to/download/location):
+**Crackme 1 Solution (link/to/download/location):**
 
 To solve this crackme, you need to __________________________.
 
