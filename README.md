@@ -1,13 +1,13 @@
-#Binary Reverse Engineering Challenges
+Binary Reverse Engineering Challenges
 ---
 
-##Crackme 1 Solution (crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz):
+#Crackme 1 Solution (crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz):
 
 To solve this crackme, I unzipped the archive I downloaded from the link `crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz` and the unzipped file contained 3 files, with two of them as binary files (a 32-bit and a 64-bit) and the third a readme file, containing a simple description of the challenge:.
 
 ###My solution is shown below:
-<code>
-<pre>#!/usr/bin/env python3</pre>
+<pre><code>
+#!/usr/bin/env python3</pre>
 import string
 import random
 
@@ -46,7 +46,7 @@ serial[18] = iVar2
 serial[1] = conditional_random(lambda x: x + serial[2] > 170, valid_chars)
 serial[16] = conditional_random(lambda x: x + serial[17] > 170 and serial[1] + serial[2] != x + serial[17], valid_chars)
 print("".join([chr(c) for c in serial]))
-</code>
+</pre></code>
 
 print("This is the answer!")
 
