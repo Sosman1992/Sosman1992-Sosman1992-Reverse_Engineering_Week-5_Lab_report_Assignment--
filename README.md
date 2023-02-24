@@ -54,10 +54,16 @@ print("".join([chr(c) for c in serial]))
 **How I did it using Ghidra (and any other tools you used like gdb):**
 
     I opened the crackme in Ghidra by first of all running the command `./Ghidra` in my terminal and then imported the 32-bit executable version with.         Having loaded the binary into Ghidra, I then proceed to look for the `main` function since it is the main entry point of any C program, After double       clicking the main function in the system tree, it then opened up a decompilation window containing C code.  
-    I found the `main` function and noticed three function calls. The first one called `rock((int)argv[1])` does is call another function `bomb()` within       it if a character matches set of pattern. I can tell because most of the function body of `rock` is made up of a while loop that is iterating over the     entire serial. Also if statement is present that checks if the size of the serial is 0x13, which confirms the suspicion that our serial is going to be     19-characters long.
-    The second one called `paper` function does is creating conditions that the keygen will need to take into account to pass this verification stage. I       can tell because there are 4 code paths within the `paper` function body that will result in a call to bomb().
-    The third one called `scissors` function does is creating conditions that the keygen will need to take into account to pass this verification stage. I       can tell because there are 4 code paths within the `paper` function body that will result in a call to bomb().
- 
+    I found the `main` function and noticed three function calls. 
+    The first one called `rock()` takes an integer argument called `serial`. It also includes a function called `bomb` that may cause the program to           terminate abruptly. The rock function validates `serial` which is an input string to the function by ensuring that the string meets certain requisite       by checking If a character is not a digit or a letter, or it is a letter outside of the range A-Z or a-z, the function calls the "bomb" function and       terminates the program or If a character is a letter between A-Z or a-z, the function prints "ROCK 2: [index] - [character]" to the console and calls       the "bomb" function or If a character is a letter between '-' and '0' (inclusive), or a letter between ':' and '@' (inclusive), the function prints         "ROCK 1: [index] - [character]" to the console and calls the "bomb" function or If the input string has a length different from 19 characters, the         function prints "ROCK 4: Serial not 19 chars!" to the console and calls the "bomb" function.
+    However If the input string passes all of these checks, the function simply returns without doing anything else after the `rock` function iterates over     the input characters of the string using a while loop and performing of several checks on each of the entered character.
+    I can tell because  the presence of the `bomb` function and the use of the `printf` and `puts` functions suggest that the program is intended to           provide some kind of interactive console interface or output. Additionally, the "while" loop with an "if-else" statement nested inside it suggests that     the function is iterating over a string input and performing some validation checks.
+    
+    The second one called `paper` function and its purpose is to validate the input string `key` to ensure that it meets certain requirements. In additon       the function performs several operations on an input string, comparing the results of the to specific values, and then returns without doing anything       else if the input string is valid. I can tell this because, the presence of the variable, conditional statements, bomb function, indicates that the         function `paper` is performing some kind of validation or verification of input data using bitwise XOR and integer arithmetic. Also the use of `puts`       function to print messages to the console and the conditional execution of the "bomb" function indicate that the program may have some interactive or       error-handling features.
+    
+    The third one called `scissors` performs some sort of check on the serial parameter, and calls `bomb` if certain conditions are not met by validating       certain bytes in the serial argument and terminates the program if the validation fails.I can tell this because, the scissors function takes an integer     argument serial as its parameter, which is interpreted as a memory address, and performs some operations on the contents of memory at that address.
+
+    The fourth function called `cracker` calculates the sum of the integer values of the characters at the memory locations `serial+0xe`, `serial+4`, and       `serial+9`. If the sum is not equal to 0x87 (which is decimal 135), the function prints an error message `cracker 1` and calls the `bomb` function to       terminate the program. However, if the sum is equal to 0x87, the function returns without doing anything else. I can tell this because, the function       accesses the value of a character at a specific memory location by dereferencing a pointer to that location.
     
     
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what       you did in enough detail that someone else could reproduce what you did.
@@ -72,7 +78,23 @@ My solution is ____________________________. (If the crackme asks for a program,
 
 #!/usr/bin/env python3
 
+def generate_key(username):
+    if not 8 <= len(username) <= 12:
+        print("username must be between 8 and 12 characters.")
+        quit()
+    key = '' 
+    for i, u in enumerate(username):
+        if i%2:
+            key += str(ord(u.upper()))
+        else:
+            key += str(ord(u.lower()))
+    return int(key[2*(len(username)-8):][0:8])
 
+if __name__=="__main__":
+    parser = argparse.ArgumentParser("crackme1 keygen")
+    parser.add_argument("username")
+    args = parser.parse_args()
+    print(generate_key(args.username))
 print("This is the answer!")
 
 How I did it using Ghidra (and any other tools you used like gdb):
