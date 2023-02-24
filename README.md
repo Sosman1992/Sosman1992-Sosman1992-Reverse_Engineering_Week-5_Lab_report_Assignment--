@@ -5,13 +5,13 @@ Binary Reverse Engineering Challenges
 
 To solve this crackme, I unzipped the archive I downloaded from the link `crackmes.cf/users/seveb/crackme05/download/crackme05.tar.gz` and the unzipped file contained 3 files, with two of them as binary files (a 32-bit and a 64-bit) and the third a readme file, containing a simple description of the challenge:.
 
-###My solution is shown below:
+##My solution is shown below:
 <pre><code>
 #!/usr/bin/env python3</pre>
 import string
 import random
 
-<pre># Function definition to generate a random character based on a supplied condition</pre>
+# Function definition to generate a random character based on a supplied condition</pre>
  def conditional_random(cond, chars):
      res = []
      for c in chars:
@@ -50,7 +50,7 @@ print("".join([chr(c) for c in serial]))
 
 print("This is the answer!")
 
-###How I did it using Ghidra (and any other tools you used like gdb):
+##How I did it using Ghidra (and any other tools you used like gdb):
 
     I opened the crackme in Ghidra
     I found the `main` function and noticed three function calls.
