@@ -49,7 +49,7 @@ serial[16] = conditional_random(lambda x: x + serial[17] > 170 and serial[1] + s
 print("".join([chr(c) for c in serial]))
 </pre></code>
 
-**print("This is the answer!")**
+**print("This is the answer 5jp6-K-uk-moHN-6Ms5!")**
 
 **How I did it using Ghidra (and any other tools you used like gdb):**
 
