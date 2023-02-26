@@ -98,7 +98,7 @@ print("".join([chr(c) for c in serial]))
 
  
 
-**Crackme 1 Solution (link/to/download/location):**
+**Crackme 1 Solution (crackmes.cf/users/adamziaja/crackme1/download/crackme1.tar.gz):**
 
 To solve this crackme, you need to __________________________.
 
@@ -123,6 +123,7 @@ if __name__=="__main__":
     parser.add_argument("username")
     args = parser.parse_args()
     print(generate_key(args.username))
+    
 print("This is the answer!")
 
 How I did it using Ghidra (and any other tools you used like gdb):
