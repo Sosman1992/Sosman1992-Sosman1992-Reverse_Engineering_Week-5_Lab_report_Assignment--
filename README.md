@@ -53,13 +53,24 @@ print("".join([chr(c) for c in serial]))
 
 **How I did it using Ghidra (and any other tools you used like gdb):**
 
-    I opened the crackme in Ghidra by first of all running the command `./Ghidra` in my terminal and then imported the 32-bit executable 
-    version with. Having loaded the binary into Ghidra, I then proceed to look for the `main` function since it is the main entry point 
-    of any C program, After double clicking the main function in the system tree, it opened up a decompilation window containing C code.  
-    I found the `main` function and noticed three function calls. 
-    The first one called `rock()` takes an integer argument called `serial`. It also includes a function called `bomb` that may cause the program to           terminate abruptly. The rock function validates `serial` which is an input string to the function by ensuring that the string meets certain requisite       by checking If a character is not a digit or a letter, or it is a letter outside of the range A-Z or a-z, the function calls the "bomb" function and       terminates the program or If a character is a letter between A-Z or a-z, the function prints "ROCK 2: [index] - [character]" to the console and calls       the "bomb" function or If a character is a letter between '-' and '0' (inclusive), or a letter between ':' and '@' (inclusive), the function prints         "ROCK 1: [index] - [character]" to the console and calls the "bomb" function or If the input string has a length different from 19 characters, the         function prints "ROCK 4: Serial not 19 chars!" to the console and calls the "bomb" function.
-    However If the input string passes all of these checks, the function simply returns without doing anything else after the `rock` function iterates over     the input characters of the string using a while loop and performing of several checks on each of the entered character.
-    I can tell because  the presence of the `bomb` function and the use of the `printf` and `puts` functions suggest that the program is intended to           provide some kind of interactive console interface or output. Additionally, the "while" loop with an "if-else" statement nested inside it suggests that     the function is iterating over a string input and performing some validation checks.
+    I opened the crackme in Ghidra by first of all running the command `./Ghidra` in my terminal and then imported the 32-bit
+    executable version with. Having loaded the binary into Ghidra, I then proceed to look for the `main` function since it is
+    the main entry point of any C program, After double clicking the main function in the system tree, a decompilation window 
+    containing C code was opened.  I found the `main` function and noticed three function calls. 
+    
+    The first one called `rock()` takes an integer argument called `serial`. It also includes a function called `bomb` that may
+    cause the program to terminate abruptly. The rock function validates `serial` an input string to rock by ensuring that the 
+    string meets certain requisite by checking If a character is not a digit or a letter, or it is a letter outside of the range 
+    A-Z or a-z, the function calls the "bomb" function and terminates the program or If a character is a letter between A-Z/a-z, 
+    the function prints "ROCK 2: [index] - [character]" to the console and calls the "bomb" function or If a character is a letter
+    between '-' and '0' (inclusive), or a letter between ':' and '@' (inclusive), the function prints "ROCK 1:[index]-[character]" 
+    to the console and calls the "bomb" function or If the input string has a length different from 19 characters, the function 
+    prints "ROCK 4: Serial not 19 chars!" to the console and calls the "bomb" function. However If the input string passes all of 
+    these checks, the function returns without doing anything else after the `rock` function iterates over the input characters of
+    the string using a while loop and performing of several checks on each of the entered character.
+    I can tell because  the presence of the `bomb` function and the use of the `printf` and `puts` functions suggest that the program
+    is intended to provide some kind of interactive console interface or output. Additionally, the "while" loop with an "if-else"
+    statement nested inside it suggests that the function is iterating over a string input and performing some validation checks.
     
     The second one called `paper` function and its purpose is to validate the input string `key` to ensure that it meets certain requirements. In additon       the function performs several operations on an input string, comparing the results of the to specific values, and then returns without doing anything       else if the input string is valid. I can tell this because, the presence of the variable, conditional statements, bomb function, indicates that the         function `paper` is performing some kind of validation or verification of input data using bitwise XOR and integer arithmetic. Also the use of `puts`       function to print messages to the console and the conditional execution of the "bomb" function indicate that the program may have some interactive or       error-handling features.
     
