@@ -58,41 +58,43 @@ print("".join([chr(c) for c in serial]))
     the main entry point of any C program, After double clicking the main function in the system tree, a decompilation window 
     containing C code was opened.  I found the `main` function and noticed three function calls. 
     
-    The first one called `rock()` takes an integer argument called `serial`. It also includes a function called `bomb` that may
-    cause the program to terminate abruptly. The rock function validates `serial` an input string to rock by ensuring that the 
-    string meets certain requisite by checking If a character is not a digit or a letter, or it is a letter outside of the range 
-    A-Z or a-z, the function calls the "bomb" function and terminates the program or If a character is a letter between A-Z/a-z, 
-    the function prints "ROCK 2: [index] - [character]" to the console and calls the "bomb" function or If a character is a letter
-    between '-' and '0' (inclusive), or a letter between ':' and '@' (inclusive), the function prints "ROCK 1:[index]-[character]" 
-    to the console and calls the "bomb" function or If the input string has a length different from 19 characters, the function 
-    prints "ROCK 4: Serial not 19 chars!" to the console and calls the "bomb" function. However If the input string passes all of 
-    these checks, the function returns without doing anything else after the `rock` function iterates over the input characters of
-    the string using a while loop and performing of several checks on each of the entered character.
-    I can tell because  the presence of the `bomb` function and the use of the `printf` and `puts` functions suggest that the program
-    is intended to provide some kind of interactive console interface or output. Additionally, the "while" loop with an "if-else"
-    statement nested inside it suggests that the function is iterating over a string input and performing some validation checks.
+    The first one called `rock()` takes an integer argument called `serial`. Also includes a function called `bomb` that may
+    cause the program to terminate abruptly. The rock function validates `serial` an input string to rock to ensure that the 
+    string meets certain requisite by checking If a character is not a digit or a letter, or it is a letter outside the range 
+    A-Z or a-z, the function calls "bomb" and terminates the program or If a character is a letter between A-Z/a-z, prints 
+    "ROCK 2: [index] - [character]" to the console and calls the "bomb" function or If a character is a letter between '-' 
+    and '0' (inclusive), or a letter between ':' and '@' (inclusive), the function prints "ROCK 1:[index]-[character]" 
+    to the console and calls the "bomb" function or If the input string has a length different from 19 characters, it
+    prints "ROCK 4: Serial not 19 chars!" to the console and calls the "bomb" function. However If the input string passes 
+    all of these checks, the function returns without doing anything else after the `rock` function iterates over the input 
+    characters of the string using a while loop and performing of several checks on each of the entered character.
+    I can tell because  the presence of the `bomb` function and the use of the `printf` and `puts` functions suggest that 
+    the program is intended to provide some kind of interactive console interface or output. Additionally, the "while" loop 
+    with an "if-else" statement nested inside it suggests that the function is iterating over a string input and performing 
+    some validation checks.
     
-    The second one called `paper` function and its purpose is to validate the input string `key` to ensure that it meets certain 
-    requirements. In additon, the function performs several operations on an input string, comparing the results of the string to 
-    specific values, and then returns without doing anything else if the input string is valid.
-    I can tell this because, the presence of the variable, conditional statements, bomb function, indicates that the function `paper` 
-    is performing some kind of validation or verification of input data using bitwise XOR and integer arithmetic. Also the use of `puts`
-    function to print messages to the console and the conditional execution of the "bomb" function indicate that the program may have 
-    some interactive or error-handling features.
+    The second one called `paper` function and its purpose is to validate the input string `key` to ensure that it meets 
+    certain requirements. In additon, the function performs several operations on an input string, comparing the results 
+    of the string to specific values, and then returns without doing anything else if the input string is valid.
+    I can tell this because, the presence of the variable, conditional statements, bomb function, indicates that the function 
+    `paper` is performing some kind of validation or verification of input data using bitwise XOR and integer arithmetic. 
+    Also the use of `puts` function to print messages to the console and the conditional execution of the "bomb" function 
+    indicate that the program may have some interactive or error-handling features.
     
-    The third one called `scissors` performs some sort of check on the serial parameter, and calls `bomb` if certain conditions are
-    not met by validating certain bytes in the serial argument and terminates the program if the validation fails.
-    I can tell this because, the scissors function takes an integer argument serial as its parameter, which is interpreted as a memory 
-    address, and performs some operations on the contents of memory at that address.
+    The third one called `scissors` performs some sort of check on the serial parameter, and calls `bomb` if certain conditions 
+    are not met by validating certain bytes in the serial argument and terminates the program if the validation fails.
+    I can tell this because, the scissors function takes an integer argument serial as its parameter, which is interpreted as 
+    a memory address, and performs some operations on the contents of memory at that address.
 
-    The fourth function called `cracker` calculates the sum of the integer values of the characters at the memory locations `serial+0xe`,
-   `serial+4`, and `serial+9`. If the sum is not equal to 0x87 (which is decimal 135), the function prints an error message `cracker 1` 
-    and calls the `bomb` function to terminate the program. However, if the sum is equal to 0x87, the function returns without doing 
-    anything else. I can tell this because, the function accesses the value of a character at a specific memory location by 
-    dereferencing a pointer to that location.
+    The fourth function called `cracker` calculates the sum of the integer values of the characters at the memory locations 
+    `serial+0xe`,`serial+4`, and `serial+9`. If the sum is not equal to 0x87 (which is decimal 135), the function prints an 
+    error message `cracker 1` and calls the `bomb` function to terminate the program. However, if the sum is equal to 0x87, 
+    the function returns without doing anything else. I can tell this because, the function accesses the value of a character 
+    at a specific memory location by dereferencing a pointer to that location.
     
     
-    Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what       you did in enough detail that someone else could reproduce what you did.
+    Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace
+    the need to explain what you did in enough detail that someone else could reproduce what you did.
 
  
 
