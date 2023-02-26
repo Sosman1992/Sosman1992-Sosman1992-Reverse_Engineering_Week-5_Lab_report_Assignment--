@@ -102,8 +102,8 @@ print("".join([chr(c) for c in serial]))
 
 To solve this crackme, you need to __________________________.
 
-My solution is ____________________________. (If the crackme asks for a program, include your source code in a code block)
-
+**My solution is shown below:** 
+<pre><code>
 #!/usr/bin/env python3
 
 def generate_key(username):
@@ -123,7 +123,7 @@ if __name__=="__main__":
     parser.add_argument("username")
     args = parser.parse_args()
     print(generate_key(args.username))
-    
+</pre></code>    
 print("This is the answer!")
 
 How I did it using Ghidra (and any other tools you used like gdb):
