@@ -72,11 +72,24 @@ print("".join([chr(c) for c in serial]))
     is intended to provide some kind of interactive console interface or output. Additionally, the "while" loop with an "if-else"
     statement nested inside it suggests that the function is iterating over a string input and performing some validation checks.
     
-    The second one called `paper` function and its purpose is to validate the input string `key` to ensure that it meets certain requirements. In additon       the function performs several operations on an input string, comparing the results of the to specific values, and then returns without doing anything       else if the input string is valid. I can tell this because, the presence of the variable, conditional statements, bomb function, indicates that the         function `paper` is performing some kind of validation or verification of input data using bitwise XOR and integer arithmetic. Also the use of `puts`       function to print messages to the console and the conditional execution of the "bomb" function indicate that the program may have some interactive or       error-handling features.
+    The second one called `paper` function and its purpose is to validate the input string `key` to ensure that it meets certain 
+    requirements. In additon, the function performs several operations on an input string, comparing the results of the string to 
+    specific values, and then returns without doing anything else if the input string is valid.
+    I can tell this because, the presence of the variable, conditional statements, bomb function, indicates that the function `paper` 
+    is performing some kind of validation or verification of input data using bitwise XOR and integer arithmetic. Also the use of `puts`
+    function to print messages to the console and the conditional execution of the "bomb" function indicate that the program may have 
+    some interactive or error-handling features.
     
-    The third one called `scissors` performs some sort of check on the serial parameter, and calls `bomb` if certain conditions are not met by validating       certain bytes in the serial argument and terminates the program if the validation fails.I can tell this because, the scissors function takes an integer     argument serial as its parameter, which is interpreted as a memory address, and performs some operations on the contents of memory at that address.
+    The third one called `scissors` performs some sort of check on the serial parameter, and calls `bomb` if certain conditions are
+    not met by validating certain bytes in the serial argument and terminates the program if the validation fails.
+    I can tell this because, the scissors function takes an integer argument serial as its parameter, which is interpreted as a memory 
+    address, and performs some operations on the contents of memory at that address.
 
-    The fourth function called `cracker` calculates the sum of the integer values of the characters at the memory locations `serial+0xe`, `serial+4`, and       `serial+9`. If the sum is not equal to 0x87 (which is decimal 135), the function prints an error message `cracker 1` and calls the `bomb` function to       terminate the program. However, if the sum is equal to 0x87, the function returns without doing anything else. I can tell this because, the function       accesses the value of a character at a specific memory location by dereferencing a pointer to that location.
+    The fourth function called `cracker` calculates the sum of the integer values of the characters at the memory locations `serial+0xe`,
+   `serial+4`, and `serial+9`. If the sum is not equal to 0x87 (which is decimal 135), the function prints an error message `cracker 1` 
+    and calls the `bomb` function to terminate the program. However, if the sum is equal to 0x87, the function returns without doing 
+    anything else. I can tell this because, the function accesses the value of a character at a specific memory location by 
+    dereferencing a pointer to that location.
     
     
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what       you did in enough detail that someone else could reproduce what you did.
