@@ -131,15 +131,17 @@ How I did it using Ghidra (and any other tools you used like gdb):
     I opened the crackme in Ghidra and I found the `main` function with a return type of int and no parameters.
     The function starts by declaring and initializing several variables of different data types, including bool, 
     int, basic_ostream, ulong, char, string, double, istringstream, and stringstream. It also declares an array 
-    of basic_ostream objects named abStack_178.
+    of basic_ostream objects named abStack_178 and also two objects of type "istringstream" and "stringstream", 
+    which are used for input and output.
 
     The function then uses several C++ standard library functions and operators to perform input/output operations
     and string manipulation. It prompts the     user to enter a username and a serial number, reads the input from
     the standard input stream (cin), and validates the input. If the input is valid, it performs some string manipulation 
     on the username and serial number, and prints the result to the standard output stream (cout).
 
-    The code seems to have some issues with exception handling, as there are several try blocks without corresponding 
-    catch blocks. It is also unclear what the purpose of the abStack_178 array is, as it is not used in the code.
+    The program has function calls to various C++ standard library functions, such as std::getline, std::tolower, std::toupper,
+    std::operator<<, std::operator>>, and several others. In addition, there are also some constructor and destructor calls for 
+    objects of C++ standard library classes like std::basic_stringstream and std::basic_string.
      
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't 
     replace the need to explain what you did in enough detail that someone else could reproduce what you did.
