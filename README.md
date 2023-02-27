@@ -120,7 +120,8 @@ if __name__=="__main__":
     parser.add_argument("username")
     args = parser.parse_args()
     print(generate_key(args.username))
-</pre></code>    
+</pre></code>
+
 print("This is the answer!")
 
 How I did it using Ghidra (and any other tools you used like gdb):
@@ -143,7 +144,7 @@ How I did it using Ghidra (and any other tools you used like gdb):
     Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't 
     replace the need to explain what you did in enough detail that someone else could reproduce what you did.
 
-
+![sno](https://user-images.githubusercontent.com/66968869/221465429-e4fc1f70-23d2-4664-a7b6-e2ba9ac600c8.png)
 
 Crackme 1 Solution (link/to/download/location):
 
