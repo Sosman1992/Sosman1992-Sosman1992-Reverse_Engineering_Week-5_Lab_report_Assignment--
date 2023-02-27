@@ -92,9 +92,8 @@ print("".join([chr(c) for c in serial]))
     the function returns without doing anything else. I can tell this because, the function accesses the value of a character 
     at a specific memory location by dereferencing a pointer to that location.
     
-    ![key](https://user-images.githubusercontent.com/66968869/221427335-21c36863-43d2-418a-8952-50b1b426d7f3.png)
+![key](https://user-images.githubusercontent.com/66968869/221465037-9516172e-beac-48a1-a04c-72cf51ea182a.png)
 
- 
 
 **Crackme 1 Solution (crackmes.cf/users/adamziaja/crackme1/download/crackme1.tar.gz):**
 
