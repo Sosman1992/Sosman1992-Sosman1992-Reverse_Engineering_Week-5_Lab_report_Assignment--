@@ -154,37 +154,20 @@ which requires a code that can provide me with a key to apply to the text box of
 <pre><code>
 #!/usr/bin/env python3
 
-def printable_chars(s):
-    ret = True
-    for i in s:
-        if ord(i) < 32 or ord(i) > 126:
-            ret = False
-    return ret
-
-ciphertext = [0x74,0x66,0x6f,0x6f,0xc3,0x47,0x6c,0x6d,0x66,0xc2,0xaf,
-        0xc3,0x60,0x6c,0x6d,0x64,0x71,0x82,0x17,0x16,0x6f,0x82,0x17,
-        0x6a,0x6c,0x6d,0x70,0xc2,0xc2,0xc2]
-
-for key in range(0,256):
-    plaintext = ""
-    for c in ciphertext: 
-        plaintext_char = c - 0x2644
-        plaintext_char = plaintext_char ^ 0xdead
-        plaintext_char = plaintext_char + 10
-        plaintext_char = plaintext_char - key 
-        plaintext_char ^= key
-        plaintext += chr(plaintext_char & 0xFF)
-
-    if printable_chars(plaintext):
-        print key, plaintext
 </pre></code>
 
 print("The key is 254")
 
 How I did it using Ghidra (and any other tools you used like gdb):
 
-    I opened the crackme in Ghidra
-    I found the `main` function and double clicked to launch it in the Decompile window pane
-    The first one called `________` does ________. I can tell because ___________________.
+    I opened the crackme in Ghidra I found the `main` function and double clicked to launch it in the
+    Decompile window pane and I found some function calls within it. The first one called `MessageBoxA`
+    and it takes 4 parameters. The MessageBoxA function is called only when a conditional check is done 
+    to ascertain whether a null character is present in the memory location DAT_00015018. If the null 
+    character is present, it means that the string stored in that memory location has ended, and hence 
+    it is a valid string else the if there is an abscence of a null character in the memory location 
+    it means that the string is not properly terminated, and there could be a runtime error as a result 
+    of accessing memory beyond the end of the string. In this case, the code displays an error message
+    box with the message "s_Runtime_error_at_00000000_00015054" and the title "s_Error_0001504c".
     
     
