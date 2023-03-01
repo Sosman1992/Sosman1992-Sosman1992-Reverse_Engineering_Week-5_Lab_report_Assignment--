@@ -96,7 +96,7 @@ print("".join([chr(c) for c in serial]))
 
 **Crackme 1 Solution (crackmes.cf/users/adamziaja/crackme1/download/crackme1.tar.gz):**
 
-To solve this crackme, you need to __________________________.
+To solve this crackme, I unzipped the archive I downloaded from the link `crackmes.cf/users/adamziaja/crackme1/download/crackme1.tar.gz`
 
 **My solution is shown below:** 
 <pre><code>
@@ -147,19 +147,44 @@ How I did it using Ghidra (and any other tools you used like gdb):
 
 Crackme 1 Solution (link/to/download/location):
 
-To solve this crackme, you need to __________________________.
+To solve this crackme, I unzipped the archive I downloaded from the link `crackmes.cf/users/crackmes-de-hmx0101s-decryptme-1` and opened it in windows XP
+which requires a code that can provide me with a key to apply to the text box of launched crackme executable in the windows environment to decrypt an unclear message whenever a wrong key is typed into the textbox. 
 
-My solution is ____________________________. (If the crackme asks for a program, include your source code in a code block)
-
+**My solution is shown below:**
+<pre><code>
 #!/usr/bin/env python3
 
+def printable_chars(s):
+    ret = True
+    for i in s:
+        if ord(i) < 32 or ord(i) > 126:
+            ret = False
+    return ret
 
-print("This is the answer!")
+ciphertext = [0x74,0x66,0x6f,0x6f,0xc3,0x47,0x6c,0x6d,0x66,0xc2,0xaf,
+        0xc3,0x60,0x6c,0x6d,0x64,0x71,0x82,0x17,0x16,0x6f,0x82,0x17,
+        0x6a,0x6c,0x6d,0x70,0xc2,0xc2,0xc2]
+
+for key in range(0,256):
+    plaintext = ""
+    for c in ciphertext: 
+        plaintext_char = c - 0x2644
+        plaintext_char = plaintext_char ^ 0xdead
+        plaintext_char = plaintext_char + 10
+        plaintext_char = plaintext_char - key 
+        plaintext_char ^= key
+        plaintext += chr(plaintext_char & 0xFF)
+
+    if printable_chars(plaintext):
+        print key, plaintext
+</pre></code>
+
+print("The key is 254")
 
 How I did it using Ghidra (and any other tools you used like gdb):
 
     I opened the crackme in Ghidra
-    I found the `main` function and noticed three function calls.
+    I found the `main` function and double clicked to launch it in the Decompile window pane
     The first one called `________` does ________. I can tell because ___________________.
-    etc.
-    Screenshots in here would be a nice touch -- especially if something is hard to describe in words. But images don't replace the need to explain what you did in enough detail that someone else could reproduce what you did.
+    
+    
