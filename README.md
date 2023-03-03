@@ -100,25 +100,33 @@ To solve this crackme, I unzipped the archive I downloaded from the link `crackm
 
 **My solution is shown below:** 
 <pre><code>
-#!/usr/bin/env python3
+import argparse
 
 def generate_key(username):
-    if not 8 <= len(username) <= 12:
-        print("username must be between 8 and 12 characters.")
-        quit()
-    key = '' 
-    for i, u in enumerate(username):
-        if i%2:
-            key += str(ord(u.upper()))
-        else:
-            key += str(ord(u.lower()))
-    return int(key[2*(len(username)-8):][0:8])
+    # Make sure the username is between 8 and 12 characters long
+    if len(username) < 8 or len(username) > 12:
+        print("Username must be between 8 and 12 characters.")
+        return None
 
-if __name__=="__main__":
+    key = ""
+    for i, c in enumerate(username):
+        if i % 2 == 0:
+            key += str(ord(c.lower()))
+        else:
+            key += str(ord(c.upper()))
+
+    key = (key[2*(len(username)-8):][0:8])
+    return int(key)
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser("crackme1 keygen")
     parser.add_argument("username")
     args = parser.parse_args()
-    print(generate_key(args.username))
+    username = args.username
+
+    key = generate_key(username)
+    if key is not None:
+        print(f"The key for username {username} is: {key}.")
 </pre></code>
 
 print("This is the answer!")
